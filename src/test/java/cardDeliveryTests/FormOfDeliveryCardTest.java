@@ -1,4 +1,4 @@
-package passedTests;
+package cardDeliveryTests;
 
 import com.codeborne.selenide.Condition;
 import data.DataGenerator;
