@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.8.1'
 }
 
 group 'ru.netology'
@@ -11,12 +12,14 @@ compileTestJava.options.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
     testImplementation 'com.codeborne:selenide:5.19.0'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.7.1'
     testImplementation 'com.github.javafaker:javafaker:1.0.1'
+    testImplementation 'io.qameta.allure:allure-selenide:2.13.3'
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
     testCompileOnly 'org.projectlombok:lombok:1.18.20'
@@ -26,4 +29,12 @@ dependencies {
 test {
     useJUnitPlatform()
     systemProperty 'selenide.headless', System.getProperty('selenide.headless')
+}
+
+allure {
+    autoconfigure =true
+    version ='2.13.3'
+    useJUnit5 {
+        version ='2.13.3'
+    }
 }

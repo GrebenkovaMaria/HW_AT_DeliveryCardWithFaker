@@ -1,11 +1,11 @@
 package test;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import data.DataGenerator;
+import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.Keys;
 import java.time.Duration;
 import static com.codeborne.selenide.Selectors.withText;
@@ -15,14 +15,24 @@ import static org.openqa.selenium.Keys.BACK_SPACE;
 
 public class FormOfDeliveryCardTest {
 
+    @BeforeAll
+    static void setUpAll(){
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
     @BeforeEach
-    void setUpAll() {
+    void setUpEach() {
         open("http://localhost:9999");
     }
 
     @AfterEach
     void tearDown() {
         closeWindow();
+    }
+
+    @AfterAll
+    static void tearDownAll(){
+        SelenideLogger.removeListener("allure");
     }
 
     @Test
